@@ -12,8 +12,8 @@
 
 | Student ID | Team Member Name | Role / Focus |
 | :--- | :--- | :--- |
-| `2300032586` | **Barla Rohith** | AI Algorithms, OR-Tools VRP & Backend Architecture |
 | `2300032504` | **Dasari Meenakshi** | Frontend UI/UX, Real-Time Maps & Telematics |
+| `2300032586` | **Barla Rohith** | AI Algorithms, OR-Tools VRP & Backend Architecture |
 | `2300049109` | **Durga Bhavani** | Indian Logistics Constraints & Data Integration |
 
 ---
