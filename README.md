@@ -5,6 +5,19 @@
 
 ---
 
+## 👥 Team Details
+
+- **Track**: Track 3 – RouteMind: Adaptive Route Optimization for Supply Chain
+- **Team ID**: `102`
+
+| Student ID | Team Member Name | Role / Focus |
+| :--- | :--- | :--- |
+| `2300032586` | **Barla Rohith** | AI Algorithms, OR-Tools VRP & Backend Architecture |
+| `2300032504` | **Dasari Meenakshi** | Frontend UI/UX, Real-Time Maps & Telematics |
+| `2300049109` | **Durga Bhavani** | Indian Logistics Constraints & Data Integration |
+
+---
+
 ## 📌 Executive Summary & Architecture Diagram
 
 RouteMind replaces static overnight route planning with a **Sub-30-Second Dynamic Replanning Engine**. It combines **Google OR-Tools VRPTW** with hyper-local **Indian Logistics Rules**, automated **Self-Check constraint validation**, and **AI Explainability narratives** for fleet supervisors.
