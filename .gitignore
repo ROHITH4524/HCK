@@ -1,0 +1,28 @@
+# Python & Byte-compiled
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Testing & Caches
+.pytest_cache/
+.env
+.venv/
+venv/
+ENV/
+
+# Node & Frontend
+node_modules/
+dist/
+build/
+.output/
+.vite/
+
+# Database files
+*.db
+*.sqlite3
+
+# IDE & OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

@@ -1,0 +1,1610 @@
+{
+  "dataset_name": "Amazon Last Mile Routing Challenge - Indian Supply Chain Edition",
+  "region": "Bengaluru Metropolitan Region",
+  "currency": "INR",
+  "hub": {
+    "hub_id": "HUB_BLR_01",
+    "name": "Bengaluru Fulfillment Center (Peenya)",
+    "lat": 13.0285,
+    "lng": 77.5197,
+    "city": "Bengaluru",
+    "state": "Karnataka",
+    "operating_hours": {
+      "start": "06:00",
+      "end": "22:00"
+    }
+  },
+  "vehicles": [
+    {
+      "vehicle_id": "VEH_BLR_01",
+      "name": "Tata Ace EV #1",
+      "driver_id": "DRV_001",
+      "driver_name": "Ramesh Kumar",
+      "type": "ELECTRIC_VAN",
+      "max_capacity_kg": 250.0,
+      "max_volume_m3": 2.5,
+      "max_cod_limit_inr": 50000.0,
+      "fuel_cost_per_km_inr": 3.5,
+      "is_eco_friendly": true,
+      "status": "IDLE"
+    },
+    {
+      "vehicle_id": "VEH_BLR_02",
+      "name": "Mahindra Bolero Pickup #2",
+      "driver_id": "DRV_002",
+      "driver_name": "Suresh Patel",
+      "type": "DIESEL_PICKUP",
+      "max_capacity_kg": 400.0,
+      "max_volume_m3": 4.0,
+      "max_cod_limit_inr": 75000.0,
+      "fuel_cost_per_km_inr": 9.0,
+      "is_eco_friendly": false,
+      "status": "IDLE"
+    },
+    {
+      "vehicle_id": "VEH_BLR_03",
+      "name": "Three Wheeler EV #3",
+      "driver_id": "DRV_003",
+      "driver_name": "Anil Singh",
+      "type": "THREE_WHEELER_EV",
+      "max_capacity_kg": 150.0,
+      "max_volume_m3": 1.5,
+      "max_cod_limit_inr": 30000.0,
+      "fuel_cost_per_km_inr": 2.5,
+      "is_eco_friendly": true,
+      "status": "IDLE"
+    }
+  ],
+  "stops": [
+    {
+      "stop_id": "STOP_001",
+      "sequence_order": 1,
+      "type": "DELIVERY",
+      "zone_name": "Koramangala",
+      "lat": 12.911451,
+      "lng": 77.613251,
+      "address": "Building #140, 4th Cross, Koramangala, Bengaluru",
+      "time_window": {
+        "start": "10:00",
+        "end": "12:00"
+      },
+      "service_time_minutes": 6,
+      "is_cod": false,
+      "cod_amount_inr": 0.0,
+      "no_truck_zone": true,
+      "no_truck_hours": [
+        "08:00-11:00",
+        "17:00-20:00"
+      ],
+      "package_id": "PKG_IN_1001",
+      "package_weight_kg": 8.28,
+      "package_volume_m3": 0.066,
+      "customer_name": "Customer_1",
+      "customer_phone": "+91 98765 00001"
+    },
+    {
+      "stop_id": "STOP_002",
+      "sequence_order": 2,
+      "type": "DELIVERY",
+      "zone_name": "Jayanagar",
+      "lat": 12.907389,
+      "lng": 77.563485,
+      "address": "Building #140, 4th Cross, Jayanagar, Bengaluru",
+      "time_window": {
+        "start": "10:00",
+        "end": "14:00"
+      },
+      "service_time_minutes": 11,
+      "is_cod": false,
+      "cod_amount_inr": 0.0,
+      "no_truck_zone": false,
+      "no_truck_hours": [],
+      "package_id": "PKG_IN_1002",
+      "package_weight_kg": 6.95,
+      "package_volume_m3": 0.056,
+      "customer_name": "Customer_2",
+      "customer_phone": "+91 98765 00002"
+    },
+    {
+      "stop_id": "STOP_003",
+      "sequence_order": 3,
+      "type": "DELIVERY",
+      "zone_name": "Electronic City",
+      "lat": 12.83736,
+      "lng": 77.66591,
+      "address": "Building #40, 4th Cross, Electronic City, Bengaluru",
+      "time_window": {
+        "start": "09:00",
+        "end": "11:00"
+      },
+      "service_time_minutes": 8,
+      "is_cod": false,
+      "cod_amount_inr": 0.0,
+      "no_truck_zone": true,
+      "no_truck_hours": [
+        "08:00-11:00",
+        "17:00-20:00"
+      ],
+      "package_id": "PKG_IN_1003",
+      "package_weight_kg": 4.41,
+      "package_volume_m3": 0.035,
+      "customer_name": "Customer_3",
+      "customer_phone": "+91 98765 00003"
+    },
+    {
+      "stop_id": "STOP_004",
+      "sequence_order": 4,
+      "type": "DELIVERY",
+      "zone_name": "Hebbal",
+      "lat": 13.015911,
+      "lng": 77.590996,
+      "address": "Building #118, 4th Cross, Hebbal, Bengaluru",
+      "time_window": {
+        "start": "12:00",
+        "end": "15:00"
+      },
+      "service_time_minutes": 6,
+      "is_cod": false,
+      "cod_amount_inr": 0.0,
+      "no_truck_zone": true,
+      "no_truck_hours": [
+        "08:00-11:00",
+        "17:00-20:00"
+      ],
+      "package_id": "PKG_IN_1004",
+      "package_weight_kg": 9.78,
+      "package_volume_m3": 0.078,
+      "customer_name": "Customer_4",
+      "customer_phone": "+91 98765 00004"
+    },
+    {
+      "stop_id": "STOP_005",
+      "sequence_order": 5,
+      "type": "DELIVERY",
+      "zone_name": "Jayanagar",
+      "lat": 12.90974,
+      "lng": 77.573459,
+      "address": "Building #75, 4th Cross, Jayanagar, Bengaluru",
+      "time_window": {
+        "start": "12:00",
+        "end": "16:00"
+      },
+      "service_time_minutes": 6,
+      "is_cod": true,
+      "cod_amount_inr": 476.05,
+      "no_truck_zone": false,
+      "no_truck_hours": [],
+      "package_id": "PKG_IN_1005",
+      "package_weight_kg": 8.1,
+      "package_volume_m3": 0.065,
+      "customer_name": "Customer_5",
+      "customer_phone": "+91 98765 00005"
+    },
+    {
+      "stop_id": "STOP_006",
+      "sequence_order": 6,
+      "type": "DELIVERY",
+      "zone_name": "Electronic City",
+      "lat": 12.858224,
+      "lng": 77.671006,
+      "address": "Building #69, 4th Cross, Electronic City, Bengaluru",
+      "time_window": {
+        "start": "12:00",
+        "end": "14:00"
+      },
+      "service_time_minutes": 6,
+      "is_cod": false,
+      "cod_amount_inr": 0.0,
+      "no_truck_zone": true,
+      "no_truck_hours": [
+        "08:00-11:00",
+        "17:00-20:00"
+      ],
+      "package_id": "PKG_IN_1006",
+      "package_weight_kg": 2.91,
+      "package_volume_m3": 0.023,
+      "customer_name": "Customer_6",
+      "customer_phone": "+91 98765 00006"
+    },
+    {
+      "stop_id": "STOP_007",
+      "sequence_order": 7,
+      "type": "DELIVERY",
+      "zone_name": "Whitefield",
+      "lat": 12.971507,
+      "lng": 77.737241,
+      "address": "Building #143, 4th Cross, Whitefield, Bengaluru",
+      "time_window": {
+        "start": "14:00",
+        "end": "17:00"
+      },
+      "service_time_minutes": 8,
+      "is_cod": false,
+      "cod_amount_inr": 0.0,
+      "no_truck_zone": true,
+      "no_truck_hours": [
+        "08:00-11:00",
+        "17:00-20:00"
+      ],
+      "package_id": "PKG_IN_1007",
+      "package_weight_kg": 7.86,
+      "package_volume_m3": 0.063,
+      "customer_name": "Customer_7",
+      "customer_phone": "+91 98765 00007"
+    },
+    {
+      "stop_id": "STOP_008",
+      "sequence_order": 8,
+      "type": "DELIVERY",
+      "zone_name": "Hebbal",
+      "lat": 13.052943,
+      "lng": 77.6108,
+      "address": "Building #146, 4th Cross, Hebbal, Bengaluru",
+      "time_window": {
+        "start": "09:00",
+        "end": "12:00"
+      },
+      "service_time_minutes": 10,
+      "is_cod": false,
+      "cod_amount_inr": 0.0,
+      "no_truck_zone": true,
+      "no_truck_hours": [
+        "08:00-11:00",
+        "17:00-20:00"
+      ],
+      "package_id": "PKG_IN_1008",
+      "package_weight_kg": 1.26,
+      "package_volume_m3": 0.01,
+      "customer_name": "Customer_8",
+      "customer_phone": "+91 98765 00008"
+    },
+    {
+      "stop_id": "STOP_009",
+      "sequence_order": 9,
+      "type": "DELIVERY",
+      "zone_name": "Electronic City",
+      "lat": 12.847672,
+      "lng": 77.671782,
+      "address": "Building #150, 4th Cross, Electronic City, Bengaluru",
+      "time_window": {
+        "start": "10:00",
+        "end": "13:00"
+      },
+      "service_time_minutes": 11,
+      "is_cod": true,
+      "cod_amount_inr": 2671.21,
+      "no_truck_zone": true,
+      "no_truck_hours": [
+        "08:00-11:00",
+        "17:00-20:00"
+      ],
+      "package_id": "PKG_IN_1009",
+      "package_weight_kg": 6.7,
+      "package_volume_m3": 0.054,
+      "customer_name": "Customer_9",
+      "customer_phone": "+91 98765 00009"
+    },
+    {
+      "stop_id": "STOP_010",
+      "sequence_order": 10,
+      "type": "DELIVERY",
+      "zone_name": "Jayanagar",
+      "lat": 12.9239,
+      "lng": 77.608666,
+      "address": "Building #40, 4th Cross, Jayanagar, Bengaluru",
+      "time_window": {
+        "start": "14:00",
+        "end": "16:00"
+      },
+      "service_time_minutes": 7,
+      "is_cod": false,
+      "cod_amount_inr": 0.0,
+      "no_truck_zone": false,
+      "no_truck_hours": [],
+      "package_id": "PKG_IN_1010",
+      "package_weight_kg": 10.4,
+      "package_volume_m3": 0.083,
+      "customer_name": "Customer_10",
+      "customer_phone": "+91 98765 00010"
+    },
+    {
+      "stop_id": "STOP_011",
+      "sequence_order": 11,
+      "type": "PICKUP",
+      "zone_name": "Jayanagar",
+      "lat": 12.93562,
+      "lng": 77.578038,
+      "address": "Building #30, 4th Cross, Jayanagar, Bengaluru",
+      "time_window": {
+        "start": "14:00",
+        "end": "18:00"
+      },
+      "service_time_minutes": 9,
+      "is_cod": true,
+      "cod_amount_inr": 2047.98,
+      "no_truck_zone": false,
+      "no_truck_hours": [],
+      "package_id": "PKG_IN_1011",
+      "package_weight_kg": 11.34,
+      "package_volume_m3": 0.091,
+      "customer_name": "Customer_11",
+      "customer_phone": "+91 98765 00011"
+    },
+    {
+      "stop_id": "STOP_012",
+      "sequence_order": 12,
+      "type": "DELIVERY",
+      "zone_name": "Hebbal",
+      "lat": 13.016378,
+      "lng": 77.593738,
+      "address": "Building #129, 4th Cross, Hebbal, Bengaluru",
+      "time_window": {
+        "start": "09:00",
+        "end": "13:00"
+      },
+      "service_time_minutes": 7,
+      "is_cod": false,
+      "cod_amount_inr": 0.0,
+      "no_truck_zone": true,
+      "no_truck_hours": [
+        "08:00-11:00",
+        "17:00-20:00"
+      ],
+      "package_id": "PKG_IN_1012",
+      "package_weight_kg": 3.53,
+      "package_volume_m3": 0.028,
+      "customer_name": "Customer_12",
+      "customer_phone": "+91 98765 00012"
+    },
+    {
+      "stop_id": "STOP_013",
+      "sequence_order": 13,
+      "type": "PICKUP",
+      "zone_name": "Koramangala",
+      "lat": 12.953726,
+      "lng": 77.614422,
+      "address": "Building #136, 4th Cross, Koramangala, Bengaluru",
+      "time_window": {
+        "start": "10:00",
+        "end": "12:00"
+      },
+      "service_time_minutes": 5,
+      "is_cod": false,
+      "cod_amount_inr": 0.0,
+      "no_truck_zone": true,
+      "no_truck_hours": [
+        "08:00-11:00",
+        "17:00-20:00"
+      ],
+      "package_id": "PKG_IN_1013",
+      "package_weight_kg": 2.36,
+      "package_volume_m3": 0.019,
+      "customer_name": "Customer_13",
+      "customer_phone": "+91 98765 00013"
+    },
+    {
+      "stop_id": "STOP_014",
+      "sequence_order": 14,
+      "type": "DELIVERY",
+      "zone_name": "Hebbal",
+      "lat": 13.03523,
+      "lng": 77.577593,
+      "address": "Building #22, 4th Cross, Hebbal, Bengaluru",
+      "time_window": {
+        "start": "12:00",
+        "end": "14:00"
+      },
+      "service_time_minutes": 12,
+      "is_cod": true,
+      "cod_amount_inr": 3103.53,
+      "no_truck_zone": true,
+      "no_truck_hours": [
+        "08:00-11:00",
+        "17:00-20:00"
+      ],
+      "package_id": "PKG_IN_1014",
+      "package_weight_kg": 11.39,
+      "package_volume_m3": 0.091,
+      "customer_name": "Customer_14",
+      "customer_phone": "+91 98765 00014"
+    },
+    {
+      "stop_id": "STOP_015",
+      "sequence_order": 15,
+      "type": "DELIVERY",
+      "zone_name": "Koramangala",
+      "lat": 12.959099,
+      "lng": 77.626135,
+      "address": "Building #68, 4th Cross, Koramangala, Bengaluru",
+      "time_window": {
+        "start": "10:00",
+        "end": "14:00"
+      },
+      "service_time_minutes": 11,
+      "is_cod": false,
+      "cod_amount_inr": 0.0,
+      "no_truck_zone": true,
+      "no_truck_hours": [
+        "08:00-11:00",
+        "17:00-20:00"
+      ],
+      "package_id": "PKG_IN_1015",
+      "package_weight_kg": 6.82,
+      "package_volume_m3": 0.055,
+      "customer_name": "Customer_15",
+      "customer_phone": "+91 98765 00015"
+    },
+    {
+      "stop_id": "STOP_016",
+      "sequence_order": 16,
+      "type": "DELIVERY",
+      "zone_name": "Electronic City",
+      "lat": 12.861346,
+      "lng": 77.689763,
+      "address": "Building #113, 4th Cross, Electronic City, Bengaluru",
+      "time_window": {
+        "start": "12:00",
+        "end": "15:00"
+      },
+      "service_time_minutes": 12,
+      "is_cod": false,
+      "cod_amount_inr": 0.0,
+      "no_truck_zone": true,
+      "no_truck_hours": [
+        "08:00-11:00",
+        "17:00-20:00"
+      ],
+      "package_id": "PKG_IN_1016",
+      "package_weight_kg": 7.97,
+      "package_volume_m3": 0.064,
+      "customer_name": "Customer_16",
+      "customer_phone": "+91 98765 00016"
+    },
+    {
+      "stop_id": "STOP_017",
+      "sequence_order": 17,
+      "type": "DELIVERY",
+      "zone_name": "Koramangala",
+      "lat": 12.922595,
+      "lng": 77.602701,
+      "address": "Building #59, 4th Cross, Koramangala, Bengaluru",
+      "time_window": {
+        "start": "10:00",
+        "end": "14:00"
+      },
+      "service_time_minutes": 6,
+      "is_cod": true,
+      "cod_amount_inr": 480.73,
+      "no_truck_zone": true,
+      "no_truck_hours": [
+        "08:00-11:00",
+        "17:00-20:00"
+      ],
+      "package_id": "PKG_IN_1017",
+      "package_weight_kg": 7.76,
+      "package_volume_m3": 0.062,
+      "customer_name": "Customer_17",
+      "customer_phone": "+91 98765 00017"
+    },
+    {
+      "stop_id": "STOP_018",
+      "sequence_order": 18,
+      "type": "DELIVERY",
+      "zone_name": "Indiranagar",
+      "lat": 12.996382,
+      "lng": 77.619343,
+      "address": "Building #147, 4th Cross, Indiranagar, Bengaluru",
+      "time_window": {
+        "start": "12:00",
+        "end": "16:00"
+      },
+      "service_time_minutes": 12,
+      "is_cod": false,
+      "cod_amount_inr": 0.0,
+      "no_truck_zone": true,
+      "no_truck_hours": [
+        "08:00-11:00",
+        "17:00-20:00"
+      ],
+      "package_id": "PKG_IN_1018",
+      "package_weight_kg": 6.7,
+      "package_volume_m3": 0.054,
+      "customer_name": "Customer_18",
+      "customer_phone": "+91 98765 00018"
+    },
+    {
+      "stop_id": "STOP_019",
+      "sequence_order": 19,
+      "type": "DELIVERY",
+      "zone_name": "Electronic City",
+      "lat": 12.854131,
+      "lng": 77.692375,
+      "address": "Building #106, 4th Cross, Electronic City, Bengaluru",
+      "time_window": {
+        "start": "09:00",
+        "end": "11:00"
+      },
+      "service_time_minutes": 12,
+      "is_cod": false,
+      "cod_amount_inr": 0.0,
+      "no_truck_zone": true,
+      "no_truck_hours": [
+        "08:00-11:00",
+        "17:00-20:00"
+      ],
+      "package_id": "PKG_IN_1019",
+      "package_weight_kg": 4.57,
+      "package_volume_m3": 0.037,
+      "customer_name": "Customer_19",
+      "customer_phone": "+91 98765 00019"
+    },
+    {
+      "stop_id": "STOP_020",
+      "sequence_order": 20,
+      "type": "DELIVERY",
+      "zone_name": "Indiranagar",
+      "lat": 12.987068,
+      "lng": 77.665008,
+      "address": "Building #28, 4th Cross, Indiranagar, Bengaluru",
+      "time_window": {
+        "start": "09:00",
+        "end": "12:00"
+      },
+      "service_time_minutes": 8,
+      "is_cod": false,
+      "cod_amount_inr": 0.0,
+      "no_truck_zone": true,
+      "no_truck_hours": [
+        "08:00-11:00",
+        "17:00-20:00"
+      ],
+      "package_id": "PKG_IN_1020",
+      "package_weight_kg": 9.71,
+      "package_volume_m3": 0.078,
+      "customer_name": "Customer_20",
+      "customer_phone": "+91 98765 00020"
+    },
+    {
+      "stop_id": "STOP_021",
+      "sequence_order": 21,
+      "type": "DELIVERY",
+      "zone_name": "Electronic City",
+      "lat": 12.82441,
+      "lng": 77.674431,
+      "address": "Building #20, 4th Cross, Electronic City, Bengaluru",
+      "time_window": {
+        "start": "10:00",
+        "end": "13:00"
+      },
+      "service_time_minutes": 12,
+      "is_cod": false,
+      "cod_amount_inr": 0.0,
+      "no_truck_zone": true,
+      "no_truck_hours": [
+        "08:00-11:00",
+        "17:00-20:00"
+      ],
+      "package_id": "PKG_IN_1021",
+      "package_weight_kg": 10.56,
+      "package_volume_m3": 0.084,
+      "customer_name": "Customer_21",
+      "customer_phone": "+91 98765 00021"
+    },
+    {
+      "stop_id": "STOP_022",
+      "sequence_order": 22,
+      "type": "DELIVERY",
+      "zone_name": "Koramangala",
+      "lat": 12.912729,
+      "lng": 77.649464,
+      "address": "Building #103, 4th Cross, Koramangala, Bengaluru",
+      "time_window": {
+        "start": "09:00",
+        "end": "11:00"
+      },
+      "service_time_minutes": 5,
+      "is_cod": true,
+      "cod_amount_inr": 1828.33,
+      "no_truck_zone": true,
+      "no_truck_hours": [
+        "08:00-11:00",
+        "17:00-20:00"
+      ],
+      "package_id": "PKG_IN_1022",
+      "package_weight_kg": 2.96,
+      "package_volume_m3": 0.024,
+      "customer_name": "Customer_22",
+      "customer_phone": "+91 98765 00022"
+    },
+    {
+      "stop_id": "STOP_023",
+      "sequence_order": 23,
+      "type": "DELIVERY",
+      "zone_name": "Whitefield",
+      "lat": 12.963749,
+      "lng": 77.774265,
+      "address": "Building #143, 4th Cross, Whitefield, Bengaluru",
+      "time_window": {
+        "start": "14:00",
+        "end": "17:00"
+      },
+      "service_time_minutes": 12,
+      "is_cod": false,
+      "cod_amount_inr": 0.0,
+      "no_truck_zone": true,
+      "no_truck_hours": [
+        "08:00-11:00",
+        "17:00-20:00"
+      ],
+      "package_id": "PKG_IN_1023",
+      "package_weight_kg": 11.51,
+      "package_volume_m3": 0.092,
+      "customer_name": "Customer_23",
+      "customer_phone": "+91 98765 00023"
+    },
+    {
+      "stop_id": "STOP_024",
+      "sequence_order": 24,
+      "type": "DELIVERY",
+      "zone_name": "Whitefield",
+      "lat": 12.954295,
+      "lng": 77.735885,
+      "address": "Building #136, 4th Cross, Whitefield, Bengaluru",
+      "time_window": {
+        "start": "09:00",
+        "end": "13:00"
+      },
+      "service_time_minutes": 7,
+      "is_cod": true,
+      "cod_amount_inr": 412.96,
+      "no_truck_zone": true,
+      "no_truck_hours": [
+        "08:00-11:00",
+        "17:00-20:00"
+      ],
+      "package_id": "PKG_IN_1024",
+      "package_weight_kg": 5.98,
+      "package_volume_m3": 0.048,
+      "customer_name": "Customer_24",
+      "customer_phone": "+91 98765 00024"
+    },
+    {
+      "stop_id": "STOP_025",
+      "sequence_order": 25,
+      "type": "DELIVERY",
+      "zone_name": "Indiranagar",
+      "lat": 13.001439,
+      "lng": 77.619806,
+      "address": "Building #146, 4th Cross, Indiranagar, Bengaluru",
+      "time_window": {
+        "start": "09:00",
+        "end": "13:00"
+      },
+      "service_time_minutes": 8,
+      "is_cod": true,
+      "cod_amount_inr": 3050.91,
+      "no_truck_zone": true,
+      "no_truck_hours": [
+        "08:00-11:00",
+        "17:00-20:00"
+      ],
+      "package_id": "PKG_IN_1025",
+      "package_weight_kg": 5.14,
+      "package_volume_m3": 0.041,
+      "customer_name": "Customer_25",
+      "customer_phone": "+91 98765 00025"
+    },
+    {
+      "stop_id": "STOP_026",
+      "sequence_order": 26,
+      "type": "PICKUP",
+      "zone_name": "Indiranagar",
+      "lat": 12.984369,
+      "lng": 77.636761,
+      "address": "Building #102, 4th Cross, Indiranagar, Bengaluru",
+      "time_window": {
+        "start": "12:00",
+        "end": "15:00"
+      },
+      "service_time_minutes": 7,
+      "is_cod": true,
+      "cod_amount_inr": 2577.62,
+      "no_truck_zone": true,
+      "no_truck_hours": [
+        "08:00-11:00",
+        "17:00-20:00"
+      ],
+      "package_id": "PKG_IN_1026",
+      "package_weight_kg": 3.24,
+      "package_volume_m3": 0.026,
+      "customer_name": "Customer_26",
+      "customer_phone": "+91 98765 00026"
+    },
+    {
+      "stop_id": "STOP_027",
+      "sequence_order": 27,
+      "type": "DELIVERY",
+      "zone_name": "HSR Layout",
+      "lat": 12.909961,
+      "lng": 77.665951,
+      "address": "Building #26, 4th Cross, HSR Layout, Bengaluru",
+      "time_window": {
+        "start": "09:00",
+        "end": "12:00"
+      },
+      "service_time_minutes": 6,
+      "is_cod": false,
+      "cod_amount_inr": 0.0,
+      "no_truck_zone": true,
+      "no_truck_hours": [
+        "08:00-11:00",
+        "17:00-20:00"
+      ],
+      "package_id": "PKG_IN_1027",
+      "package_weight_kg": 6.97,
+      "package_volume_m3": 0.056,
+      "customer_name": "Customer_27",
+      "customer_phone": "+91 98765 00027"
+    },
+    {
+      "stop_id": "STOP_028",
+      "sequence_order": 28,
+      "type": "DELIVERY",
+      "zone_name": "Electronic City",
+      "lat": 12.840194,
+      "lng": 77.658623,
+      "address": "Building #140, 4th Cross, Electronic City, Bengaluru",
+      "time_window": {
+        "start": "09:00",
+        "end": "11:00"
+      },
+      "service_time_minutes": 9,
+      "is_cod": false,
+      "cod_amount_inr": 0.0,
+      "no_truck_zone": true,
+      "no_truck_hours": [
+        "08:00-11:00",
+        "17:00-20:00"
+      ],
+      "package_id": "PKG_IN_1028",
+      "package_weight_kg": 2.31,
+      "package_volume_m3": 0.018,
+      "customer_name": "Customer_28",
+      "customer_phone": "+91 98765 00028"
+    },
+    {
+      "stop_id": "STOP_029",
+      "sequence_order": 29,
+      "type": "DELIVERY",
+      "zone_name": "Indiranagar",
+      "lat": 12.986793,
+      "lng": 77.64353,
+      "address": "Building #70, 4th Cross, Indiranagar, Bengaluru",
+      "time_window": {
+        "start": "10:00",
+        "end": "13:00"
+      },
+      "service_time_minutes": 9,
+      "is_cod": true,
+      "cod_amount_inr": 597.87,
+      "no_truck_zone": true,
+      "no_truck_hours": [
+        "08:00-11:00",
+        "17:00-20:00"
+      ],
+      "package_id": "PKG_IN_1029",
+      "package_weight_kg": 6.86,
+      "package_volume_m3": 0.055,
+      "customer_name": "Customer_29",
+      "customer_phone": "+91 98765 00029"
+    },
+    {
+      "stop_id": "STOP_030",
+      "sequence_order": 30,
+      "type": "DELIVERY",
+      "zone_name": "Electronic City",
+      "lat": 12.850781,
+      "lng": 77.66218,
+      "address": "Building #24, 4th Cross, Electronic City, Bengaluru",
+      "time_window": {
+        "start": "14:00",
+        "end": "17:00"
+      },
+      "service_time_minutes": 11,
+      "is_cod": false,
+      "cod_amount_inr": 0.0,
+      "no_truck_zone": true,
+      "no_truck_hours": [
+        "08:00-11:00",
+        "17:00-20:00"
+      ],
+      "package_id": "PKG_IN_1030",
+      "package_weight_kg": 10.23,
+      "package_volume_m3": 0.082,
+      "customer_name": "Customer_30",
+      "customer_phone": "+91 98765 00030"
+    },
+    {
+      "stop_id": "STOP_031",
+      "sequence_order": 31,
+      "type": "DELIVERY",
+      "zone_name": "HSR Layout",
+      "lat": 12.889304,
+      "lng": 77.636178,
+      "address": "Building #110, 4th Cross, HSR Layout, Bengaluru",
+      "time_window": {
+        "start": "12:00",
+        "end": "14:00"
+      },
+      "service_time_minutes": 5,
+      "is_cod": false,
+      "cod_amount_inr": 0.0,
+      "no_truck_zone": true,
+      "no_truck_hours": [
+        "08:00-11:00",
+        "17:00-20:00"
+      ],
+      "package_id": "PKG_IN_1031",
+      "package_weight_kg": 6.84,
+      "package_volume_m3": 0.055,
+      "customer_name": "Customer_31",
+      "customer_phone": "+91 98765 00031"
+    },
+    {
+      "stop_id": "STOP_032",
+      "sequence_order": 32,
+      "type": "DELIVERY",
+      "zone_name": "Koramangala",
+      "lat": 12.913962,
+      "lng": 77.643655,
+      "address": "Building #33, 4th Cross, Koramangala, Bengaluru",
+      "time_window": {
+        "start": "09:00",
+        "end": "12:00"
+      },
+      "service_time_minutes": 5,
+      "is_cod": false,
+      "cod_amount_inr": 0.0,
+      "no_truck_zone": true,
+      "no_truck_hours": [
+        "08:00-11:00",
+        "17:00-20:00"
+      ],
+      "package_id": "PKG_IN_1032",
+      "package_weight_kg": 2.2,
+      "package_volume_m3": 0.018,
+      "customer_name": "Customer_32",
+      "customer_phone": "+91 98765 00032"
+    },
+    {
+      "stop_id": "STOP_033",
+      "sequence_order": 33,
+      "type": "DELIVERY",
+      "zone_name": "HSR Layout",
+      "lat": 12.905333,
+      "lng": 77.666154,
+      "address": "Building #91, 4th Cross, HSR Layout, Bengaluru",
+      "time_window": {
+        "start": "12:00",
+        "end": "14:00"
+      },
+      "service_time_minutes": 11,
+      "is_cod": false,
+      "cod_amount_inr": 0.0,
+      "no_truck_zone": true,
+      "no_truck_hours": [
+        "08:00-11:00",
+        "17:00-20:00"
+      ],
+      "package_id": "PKG_IN_1033",
+      "package_weight_kg": 8.17,
+      "package_volume_m3": 0.065,
+      "customer_name": "Customer_33",
+      "customer_phone": "+91 98765 00033"
+    },
+    {
+      "stop_id": "STOP_034",
+      "sequence_order": 34,
+      "type": "DELIVERY",
+      "zone_name": "Whitefield",
+      "lat": 12.991088,
+      "lng": 77.736837,
+      "address": "Building #106, 4th Cross, Whitefield, Bengaluru",
+      "time_window": {
+        "start": "10:00",
+        "end": "13:00"
+      },
+      "service_time_minutes": 8,
+      "is_cod": true,
+      "cod_amount_inr": 2643.83,
+      "no_truck_zone": true,
+      "no_truck_hours": [
+        "08:00-11:00",
+        "17:00-20:00"
+      ],
+      "package_id": "PKG_IN_1034",
+      "package_weight_kg": 4.32,
+      "package_volume_m3": 0.035,
+      "customer_name": "Customer_34",
+      "customer_phone": "+91 98765 00034"
+    },
+    {
+      "stop_id": "STOP_035",
+      "sequence_order": 35,
+      "type": "DELIVERY",
+      "zone_name": "HSR Layout",
+      "lat": 12.89506,
+      "lng": 77.654564,
+      "address": "Building #79, 4th Cross, HSR Layout, Bengaluru",
+      "time_window": {
+        "start": "09:00",
+        "end": "12:00"
+      },
+      "service_time_minutes": 8,
+      "is_cod": true,
+      "cod_amount_inr": 2903.91,
+      "no_truck_zone": true,
+      "no_truck_hours": [
+        "08:00-11:00",
+        "17:00-20:00"
+      ],
+      "package_id": "PKG_IN_1035",
+      "package_weight_kg": 5.79,
+      "package_volume_m3": 0.046,
+      "customer_name": "Customer_35",
+      "customer_phone": "+91 98765 00035"
+    },
+    {
+      "stop_id": "STOP_036",
+      "sequence_order": 36,
+      "type": "DELIVERY",
+      "zone_name": "Electronic City",
+      "lat": 12.816083,
+      "lng": 77.661656,
+      "address": "Building #131, 4th Cross, Electronic City, Bengaluru",
+      "time_window": {
+        "start": "12:00",
+        "end": "14:00"
+      },
+      "service_time_minutes": 11,
+      "is_cod": false,
+      "cod_amount_inr": 0.0,
+      "no_truck_zone": true,
+      "no_truck_hours": [
+        "08:00-11:00",
+        "17:00-20:00"
+      ],
+      "package_id": "PKG_IN_1036",
+      "package_weight_kg": 3.71,
+      "package_volume_m3": 0.03,
+      "customer_name": "Customer_36",
+      "customer_phone": "+91 98765 00036"
+    },
+    {
+      "stop_id": "STOP_037",
+      "sequence_order": 37,
+      "type": "DELIVERY",
+      "zone_name": "Hebbal",
+      "lat": 13.057762,
+      "lng": 77.577767,
+      "address": "Building #28, 4th Cross, Hebbal, Bengaluru",
+      "time_window": {
+        "start": "10:00",
+        "end": "14:00"
+      },
+      "service_time_minutes": 11,
+      "is_cod": false,
+      "cod_amount_inr": 0.0,
+      "no_truck_zone": true,
+      "no_truck_hours": [
+        "08:00-11:00",
+        "17:00-20:00"
+      ],
+      "package_id": "PKG_IN_1037",
+      "package_weight_kg": 3.55,
+      "package_volume_m3": 0.028,
+      "customer_name": "Customer_37",
+      "customer_phone": "+91 98765 00037"
+    },
+    {
+      "stop_id": "STOP_038",
+      "sequence_order": 38,
+      "type": "PICKUP",
+      "zone_name": "Hebbal",
+      "lat": 13.047227,
+      "lng": 77.587684,
+      "address": "Building #12, 4th Cross, Hebbal, Bengaluru",
+      "time_window": {
+        "start": "09:00",
+        "end": "12:00"
+      },
+      "service_time_minutes": 11,
+      "is_cod": false,
+      "cod_amount_inr": 0.0,
+      "no_truck_zone": true,
+      "no_truck_hours": [
+        "08:00-11:00",
+        "17:00-20:00"
+      ],
+      "package_id": "PKG_IN_1038",
+      "package_weight_kg": 2.69,
+      "package_volume_m3": 0.022,
+      "customer_name": "Customer_38",
+      "customer_phone": "+91 98765 00038"
+    },
+    {
+      "stop_id": "STOP_039",
+      "sequence_order": 39,
+      "type": "DELIVERY",
+      "zone_name": "Indiranagar",
+      "lat": 12.979396,
+      "lng": 77.656126,
+      "address": "Building #81, 4th Cross, Indiranagar, Bengaluru",
+      "time_window": {
+        "start": "12:00",
+        "end": "15:00"
+      },
+      "service_time_minutes": 6,
+      "is_cod": true,
+      "cod_amount_inr": 2408.77,
+      "no_truck_zone": true,
+      "no_truck_hours": [
+        "08:00-11:00",
+        "17:00-20:00"
+      ],
+      "package_id": "PKG_IN_1039",
+      "package_weight_kg": 4.3,
+      "package_volume_m3": 0.034,
+      "customer_name": "Customer_39",
+      "customer_phone": "+91 98765 00039"
+    },
+    {
+      "stop_id": "STOP_040",
+      "sequence_order": 40,
+      "type": "DELIVERY",
+      "zone_name": "HSR Layout",
+      "lat": 12.912456,
+      "lng": 77.652845,
+      "address": "Building #98, 4th Cross, HSR Layout, Bengaluru",
+      "time_window": {
+        "start": "14:00",
+        "end": "18:00"
+      },
+      "service_time_minutes": 7,
+      "is_cod": true,
+      "cod_amount_inr": 663.69,
+      "no_truck_zone": true,
+      "no_truck_hours": [
+        "08:00-11:00",
+        "17:00-20:00"
+      ],
+      "package_id": "PKG_IN_1040",
+      "package_weight_kg": 5.34,
+      "package_volume_m3": 0.043,
+      "customer_name": "Customer_40",
+      "customer_phone": "+91 98765 00040"
+    }
+  ],
+  "packages": [
+    {
+      "package_id": "PKG_IN_1001",
+      "stop_id": "STOP_001",
+      "weight_kg": 8.28,
+      "volume_m3": 0.066,
+      "is_cod": false,
+      "cod_amount_inr": 0.0,
+      "dimensions_cm": {
+        "length": 25,
+        "width": 20,
+        "height": 15
+      }
+    },
+    {
+      "package_id": "PKG_IN_1002",
+      "stop_id": "STOP_002",
+      "weight_kg": 6.95,
+      "volume_m3": 0.056,
+      "is_cod": false,
+      "cod_amount_inr": 0.0,
+      "dimensions_cm": {
+        "length": 25,
+        "width": 20,
+        "height": 15
+      }
+    },
+    {
+      "package_id": "PKG_IN_1003",
+      "stop_id": "STOP_003",
+      "weight_kg": 4.41,
+      "volume_m3": 0.035,
+      "is_cod": false,
+      "cod_amount_inr": 0.0,
+      "dimensions_cm": {
+        "length": 25,
+        "width": 20,
+        "height": 15
+      }
+    },
+    {
+      "package_id": "PKG_IN_1004",
+      "stop_id": "STOP_004",
+      "weight_kg": 9.78,
+      "volume_m3": 0.078,
+      "is_cod": false,
+      "cod_amount_inr": 0.0,
+      "dimensions_cm": {
+        "length": 25,
+        "width": 20,
+        "height": 15
+      }
+    },
+    {
+      "package_id": "PKG_IN_1005",
+      "stop_id": "STOP_005",
+      "weight_kg": 8.1,
+      "volume_m3": 0.065,
+      "is_cod": true,
+      "cod_amount_inr": 476.05,
+      "dimensions_cm": {
+        "length": 25,
+        "width": 20,
+        "height": 15
+      }
+    },
+    {
+      "package_id": "PKG_IN_1006",
+      "stop_id": "STOP_006",
+      "weight_kg": 2.91,
+      "volume_m3": 0.023,
+      "is_cod": false,
+      "cod_amount_inr": 0.0,
+      "dimensions_cm": {
+        "length": 25,
+        "width": 20,
+        "height": 15
+      }
+    },
+    {
+      "package_id": "PKG_IN_1007",
+      "stop_id": "STOP_007",
+      "weight_kg": 7.86,
+      "volume_m3": 0.063,
+      "is_cod": false,
+      "cod_amount_inr": 0.0,
+      "dimensions_cm": {
+        "length": 25,
+        "width": 20,
+        "height": 15
+      }
+    },
+    {
+      "package_id": "PKG_IN_1008",
+      "stop_id": "STOP_008",
+      "weight_kg": 1.26,
+      "volume_m3": 0.01,
+      "is_cod": false,
+      "cod_amount_inr": 0.0,
+      "dimensions_cm": {
+        "length": 25,
+        "width": 20,
+        "height": 15
+      }
+    },
+    {
+      "package_id": "PKG_IN_1009",
+      "stop_id": "STOP_009",
+      "weight_kg": 6.7,
+      "volume_m3": 0.054,
+      "is_cod": true,
+      "cod_amount_inr": 2671.21,
+      "dimensions_cm": {
+        "length": 25,
+        "width": 20,
+        "height": 15
+      }
+    },
+    {
+      "package_id": "PKG_IN_1010",
+      "stop_id": "STOP_010",
+      "weight_kg": 10.4,
+      "volume_m3": 0.083,
+      "is_cod": false,
+      "cod_amount_inr": 0.0,
+      "dimensions_cm": {
+        "length": 25,
+        "width": 20,
+        "height": 15
+      }
+    },
+    {
+      "package_id": "PKG_IN_1011",
+      "stop_id": "STOP_011",
+      "weight_kg": 11.34,
+      "volume_m3": 0.091,
+      "is_cod": true,
+      "cod_amount_inr": 2047.98,
+      "dimensions_cm": {
+        "length": 25,
+        "width": 20,
+        "height": 15
+      }
+    },
+    {
+      "package_id": "PKG_IN_1012",
+      "stop_id": "STOP_012",
+      "weight_kg": 3.53,
+      "volume_m3": 0.028,
+      "is_cod": false,
+      "cod_amount_inr": 0.0,
+      "dimensions_cm": {
+        "length": 25,
+        "width": 20,
+        "height": 15
+      }
+    },
+    {
+      "package_id": "PKG_IN_1013",
+      "stop_id": "STOP_013",
+      "weight_kg": 2.36,
+      "volume_m3": 0.019,
+      "is_cod": false,
+      "cod_amount_inr": 0.0,
+      "dimensions_cm": {
+        "length": 25,
+        "width": 20,
+        "height": 15
+      }
+    },
+    {
+      "package_id": "PKG_IN_1014",
+      "stop_id": "STOP_014",
+      "weight_kg": 11.39,
+      "volume_m3": 0.091,
+      "is_cod": true,
+      "cod_amount_inr": 3103.53,
+      "dimensions_cm": {
+        "length": 25,
+        "width": 20,
+        "height": 15
+      }
+    },
+    {
+      "package_id": "PKG_IN_1015",
+      "stop_id": "STOP_015",
+      "weight_kg": 6.82,
+      "volume_m3": 0.055,
+      "is_cod": false,
+      "cod_amount_inr": 0.0,
+      "dimensions_cm": {
+        "length": 25,
+        "width": 20,
+        "height": 15
+      }
+    },
+    {
+      "package_id": "PKG_IN_1016",
+      "stop_id": "STOP_016",
+      "weight_kg": 7.97,
+      "volume_m3": 0.064,
+      "is_cod": false,
+      "cod_amount_inr": 0.0,
+      "dimensions_cm": {
+        "length": 25,
+        "width": 20,
+        "height": 15
+      }
+    },
+    {
+      "package_id": "PKG_IN_1017",
+      "stop_id": "STOP_017",
+      "weight_kg": 7.76,
+      "volume_m3": 0.062,
+      "is_cod": true,
+      "cod_amount_inr": 480.73,
+      "dimensions_cm": {
+        "length": 25,
+        "width": 20,
+        "height": 15
+      }
+    },
+    {
+      "package_id": "PKG_IN_1018",
+      "stop_id": "STOP_018",
+      "weight_kg": 6.7,
+      "volume_m3": 0.054,
+      "is_cod": false,
+      "cod_amount_inr": 0.0,
+      "dimensions_cm": {
+        "length": 25,
+        "width": 20,
+        "height": 15
+      }
+    },
+    {
+      "package_id": "PKG_IN_1019",
+      "stop_id": "STOP_019",
+      "weight_kg": 4.57,
+      "volume_m3": 0.037,
+      "is_cod": false,
+      "cod_amount_inr": 0.0,
+      "dimensions_cm": {
+        "length": 25,
+        "width": 20,
+        "height": 15
+      }
+    },
+    {
+      "package_id": "PKG_IN_1020",
+      "stop_id": "STOP_020",
+      "weight_kg": 9.71,
+      "volume_m3": 0.078,
+      "is_cod": false,
+      "cod_amount_inr": 0.0,
+      "dimensions_cm": {
+        "length": 25,
+        "width": 20,
+        "height": 15
+      }
+    },
+    {
+      "package_id": "PKG_IN_1021",
+      "stop_id": "STOP_021",
+      "weight_kg": 10.56,
+      "volume_m3": 0.084,
+      "is_cod": false,
+      "cod_amount_inr": 0.0,
+      "dimensions_cm": {
+        "length": 25,
+        "width": 20,
+        "height": 15
+      }
+    },
+    {
+      "package_id": "PKG_IN_1022",
+      "stop_id": "STOP_022",
+      "weight_kg": 2.96,
+      "volume_m3": 0.024,
+      "is_cod": true,
+      "cod_amount_inr": 1828.33,
+      "dimensions_cm": {
+        "length": 25,
+        "width": 20,
+        "height": 15
+      }
+    },
+    {
+      "package_id": "PKG_IN_1023",
+      "stop_id": "STOP_023",
+      "weight_kg": 11.51,
+      "volume_m3": 0.092,
+      "is_cod": false,
+      "cod_amount_inr": 0.0,
+      "dimensions_cm": {
+        "length": 25,
+        "width": 20,
+        "height": 15
+      }
+    },
+    {
+      "package_id": "PKG_IN_1024",
+      "stop_id": "STOP_024",
+      "weight_kg": 5.98,
+      "volume_m3": 0.048,
+      "is_cod": true,
+      "cod_amount_inr": 412.96,
+      "dimensions_cm": {
+        "length": 25,
+        "width": 20,
+        "height": 15
+      }
+    },
+    {
+      "package_id": "PKG_IN_1025",
+      "stop_id": "STOP_025",
+      "weight_kg": 5.14,
+      "volume_m3": 0.041,
+      "is_cod": true,
+      "cod_amount_inr": 3050.91,
+      "dimensions_cm": {
+        "length": 25,
+        "width": 20,
+        "height": 15
+      }
+    },
+    {
+      "package_id": "PKG_IN_1026",
+      "stop_id": "STOP_026",
+      "weight_kg": 3.24,
+      "volume_m3": 0.026,
+      "is_cod": true,
+      "cod_amount_inr": 2577.62,
+      "dimensions_cm": {
+        "length": 25,
+        "width": 20,
+        "height": 15
+      }
+    },
+    {
+      "package_id": "PKG_IN_1027",
+      "stop_id": "STOP_027",
+      "weight_kg": 6.97,
+      "volume_m3": 0.056,
+      "is_cod": false,
+      "cod_amount_inr": 0.0,
+      "dimensions_cm": {
+        "length": 25,
+        "width": 20,
+        "height": 15
+      }
+    },
+    {
+      "package_id": "PKG_IN_1028",
+      "stop_id": "STOP_028",
+      "weight_kg": 2.31,
+      "volume_m3": 0.018,
+      "is_cod": false,
+      "cod_amount_inr": 0.0,
+      "dimensions_cm": {
+        "length": 25,
+        "width": 20,
+        "height": 15
+      }
+    },
+    {
+      "package_id": "PKG_IN_1029",
+      "stop_id": "STOP_029",
+      "weight_kg": 6.86,
+      "volume_m3": 0.055,
+      "is_cod": true,
+      "cod_amount_inr": 597.87,
+      "dimensions_cm": {
+        "length": 25,
+        "width": 20,
+        "height": 15
+      }
+    },
+    {
+      "package_id": "PKG_IN_1030",
+      "stop_id": "STOP_030",
+      "weight_kg": 10.23,
+      "volume_m3": 0.082,
+      "is_cod": false,
+      "cod_amount_inr": 0.0,
+      "dimensions_cm": {
+        "length": 25,
+        "width": 20,
+        "height": 15
+      }
+    },
+    {
+      "package_id": "PKG_IN_1031",
+      "stop_id": "STOP_031",
+      "weight_kg": 6.84,
+      "volume_m3": 0.055,
+      "is_cod": false,
+      "cod_amount_inr": 0.0,
+      "dimensions_cm": {
+        "length": 25,
+        "width": 20,
+        "height": 15
+      }
+    },
+    {
+      "package_id": "PKG_IN_1032",
+      "stop_id": "STOP_032",
+      "weight_kg": 2.2,
+      "volume_m3": 0.018,
+      "is_cod": false,
+      "cod_amount_inr": 0.0,
+      "dimensions_cm": {
+        "length": 25,
+        "width": 20,
+        "height": 15
+      }
+    },
+    {
+      "package_id": "PKG_IN_1033",
+      "stop_id": "STOP_033",
+      "weight_kg": 8.17,
+      "volume_m3": 0.065,
+      "is_cod": false,
+      "cod_amount_inr": 0.0,
+      "dimensions_cm": {
+        "length": 25,
+        "width": 20,
+        "height": 15
+      }
+    },
+    {
+      "package_id": "PKG_IN_1034",
+      "stop_id": "STOP_034",
+      "weight_kg": 4.32,
+      "volume_m3": 0.035,
+      "is_cod": true,
+      "cod_amount_inr": 2643.83,
+      "dimensions_cm": {
+        "length": 25,
+        "width": 20,
+        "height": 15
+      }
+    },
+    {
+      "package_id": "PKG_IN_1035",
+      "stop_id": "STOP_035",
+      "weight_kg": 5.79,
+      "volume_m3": 0.046,
+      "is_cod": true,
+      "cod_amount_inr": 2903.91,
+      "dimensions_cm": {
+        "length": 25,
+        "width": 20,
+        "height": 15
+      }
+    },
+    {
+      "package_id": "PKG_IN_1036",
+      "stop_id": "STOP_036",
+      "weight_kg": 3.71,
+      "volume_m3": 0.03,
+      "is_cod": false,
+      "cod_amount_inr": 0.0,
+      "dimensions_cm": {
+        "length": 25,
+        "width": 20,
+        "height": 15
+      }
+    },
+    {
+      "package_id": "PKG_IN_1037",
+      "stop_id": "STOP_037",
+      "weight_kg": 3.55,
+      "volume_m3": 0.028,
+      "is_cod": false,
+      "cod_amount_inr": 0.0,
+      "dimensions_cm": {
+        "length": 25,
+        "width": 20,
+        "height": 15
+      }
+    },
+    {
+      "package_id": "PKG_IN_1038",
+      "stop_id": "STOP_038",
+      "weight_kg": 2.69,
+      "volume_m3": 0.022,
+      "is_cod": false,
+      "cod_amount_inr": 0.0,
+      "dimensions_cm": {
+        "length": 25,
+        "width": 20,
+        "height": 15
+      }
+    },
+    {
+      "package_id": "PKG_IN_1039",
+      "stop_id": "STOP_039",
+      "weight_kg": 4.3,
+      "volume_m3": 0.034,
+      "is_cod": true,
+      "cod_amount_inr": 2408.77,
+      "dimensions_cm": {
+        "length": 25,
+        "width": 20,
+        "height": 15
+      }
+    },
+    {
+      "package_id": "PKG_IN_1040",
+      "stop_id": "STOP_040",
+      "weight_kg": 5.34,
+      "volume_m3": 0.043,
+      "is_cod": true,
+      "cod_amount_inr": 663.69,
+      "dimensions_cm": {
+        "length": 25,
+        "width": 20,
+        "height": 15
+      }
+    }
+  ]
+}
