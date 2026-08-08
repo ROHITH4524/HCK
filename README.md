@@ -1,7 +1,7 @@
 # Track 3: RouteMind – Adaptive Route Optimization for Supply Chain
 
 > **National AI Hackathon Project**  
-> An enterprise-grade, AI-powered adaptive route optimization platform for last-mile logistics, inspired by the **Amazon Last Mile Routing Research Challenge** dataset and tailored for Indian logistics constraints.
+> An enterprise-grade, AI-powered adaptive route optimization platform for last-mile logistics, inspired by the **Amazon Last Mile Routing Research Challenge** dataset and tailored for hyper-local Indian logistics constraints.
 
 ---
 
@@ -59,7 +59,7 @@ sequenceDiagram
     participant Exp as Explainability Engine
     participant DB as Database
 
-    Driver/Supervisor->>UI: Triggers Live Disruption Event (Traffic Jam / Instant Pickup / Failed Delivery)
+    Driver/Supervisor->>UI: Triggers Live Disruption Event (Traffic / Pickup / Cancel / Postpone / Failed)
     UI->>API: POST /api/v1/replan (event_type, route_id)
     API->>AI: Execute Sub-30s Partial Re-sequencing
     AI->>AI: Evaluate Nearest-Neighbor & Spatial Heuristics
@@ -77,20 +77,24 @@ sequenceDiagram
 
 ---
 
-## 🌟 Key Features
+## 🌟 Key Features & Recent System Upgrades
 
-- **Google OR-Tools VRPTW Engine**: Multi-vehicle Routing Problem solver with capacity constraints (weight/volume), time windows, and multi-vehicle fleet optimization.
+- **Google OR-Tools VRPTW Engine**: Multi-vehicle Routing Problem solver with weight/volume capacity constraints, time windows, and multi-vehicle fleet optimization across 40 Amazon Last Mile stops.
 - **Indian Logistics Rule Engine**: Encodes public policy constraints:
   1. **No-Truck Zone Prohibitions**: Peak traffic prohibition windows (08:00-11:00 & 17:00-20:00) with small EV exemptions.
   2. **COD Cash Safety Thresholds**: Maximum ₹50,000 per partner/vehicle cash-carry security limit.
   3. **VRPTW Time Windows**: Customer delivery time windows (e.g., 09:00-12:00, 14:00-17:00).
   4. **Legal Driving Hours & EV Priority**: Max 9 hours driving/day and EV preference.
-- **Sub-30-Second Dynamic Replanning**: Instant re-sequencing upon traffic jams, failed delivery attempts, or instant priority customer pickups.
-- **Self-Check Step**: Automated validation agent reviewing proposed routes against business rules before supervisor presentation.
+- **Sub-30-Second Dynamic Replanning Engine**: Real-time VRP re-sequencing supporting 5 live disruption scenarios:
+  1. **Traffic Congestion Gridlock**: Bypasses traffic corridors using spatial nearest-neighbor heuristics.
+  2. **On-Demand Instant Pickup**: Inserts high-priority pickup at minimal detour index via interactive modal.
+  3. **Order Cancellation (`ORDER_CANCELLED`)**: Purges stop, eliminates deadhead detour, and re-routes driver directly to next target.
+  4. **Order Postponement (`ORDER_POSTPONED`)**: Defers stop to later window/shift, preventing vehicle idling.
+  5. **Failed Delivery Attempt**: Marks stop failed and advances sequence.
+- **Interactive On-Demand Pickup Modal**: Custom location, customer name, weight, and COD cash amount inputs.
+- **Live Moving Telematics Simulation**: Vehicles physically move along OpenStreetMap route polylines in real time.
 - **Explainable AI Engine**: Plain English explanations detailing distance saved, time saved, fuel savings, and evaluated constraints.
-- **OpenStreetMap Interactive Telematics**: Dark-mode Leaflet map rendering hubs, vehicles, route polylines, stop pins, and live event triggers.
-- **Supervisor Review Modal**: Side-by-side Before vs. After route comparison modal with 1-click approval/rejection and WebSocket driver notifications.
-- **Driver Mobile Navigation**: Mobile view with turn-by-turn navigation link, customer contact, COD cash collection tracker, and operations view toggle.
+- **Driver Mobile Navigation App**: Auto-fetches active database route manifest, advances sequence upon delivery, opens Google Maps turn-by-turn navigation, and updates COD cash collected.
 - **Algorithmic Benchmarking Suite**: Compares RouteMind AI against Greedy Baseline, Nearest Neighbor, and Standard OR-Tools across key supply chain KPIs.
 
 ---
@@ -167,7 +171,7 @@ npm run dev
 │   └── requirements.txt
 ├── frontend/                 # React 18 + Vite + Tailwind CSS v4 App
 │   ├── src/
-│   │   ├── components/       # MapView, KPICard, SupervisorModal, DriverView, Navbar, Sidebar
+│   │   ├── components/       # MapView, KPICard, SupervisorModal, DriverView, Navbar, Sidebar, DynamicPickupModal
 │   │   ├── pages/            # Dashboard, RoutePlanner, LiveTracking, Supervisor, Analytics, Settings, Login
 │   │   └── services/         # Axios API & WebSocket services
 │   └── package.json
