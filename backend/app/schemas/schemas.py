@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field, EmailStr
+from pydantic import BaseModel, Field, EmailStr, ConfigDict
 from typing import List, Optional, Dict, Any
 from datetime import datetime
 
@@ -24,6 +24,8 @@ class UserCreate(BaseModel):
     role: str = "SUPERVISOR"
 
 class UserResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
     id: int
     username: str
     email: str
@@ -31,11 +33,10 @@ class UserResponse(BaseModel):
     role: str
     is_active: bool
 
-    class Config:
-        from_attributes = True
-
 # Stop & Package Schemas
 class StopSchema(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
     stop_id: str
     sequence_order: int
     type: str = "DELIVERY"
@@ -57,11 +58,10 @@ class StopSchema(BaseModel):
     status: str = "PENDING"
     eta: Optional[str] = None
 
-    class Config:
-        from_attributes = True
-
 # Vehicle Schema
 class VehicleSchema(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
     vehicle_id: str
     name: str
     driver_id: Optional[str] = None
@@ -76,9 +76,6 @@ class VehicleSchema(BaseModel):
     current_lng: Optional[float] = None
     collected_cod_inr: float = 0.0
 
-    class Config:
-        from_attributes = True
-
 # Route Schemas
 class RouteOptimizeRequest(BaseModel):
     vehicle_ids: Optional[List[str]] = None
@@ -86,6 +83,8 @@ class RouteOptimizeRequest(BaseModel):
     consider_traffic: bool = True
 
 class RouteResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
     route_id: str
     vehicle_id: str
     driver_id: str
@@ -98,9 +97,6 @@ class RouteResponse(BaseModel):
     stops: List[StopSchema]
     created_at: datetime
 
-    class Config:
-        from_attributes = True
-
 # Live Event & Replanning Schemas
 class ReplanRequest(BaseModel):
     event_type: str # TRAFFIC_JAM, FAILED_DELIVERY, INSTANT_PICKUP, VEHICLE_BREAKDOWN
@@ -111,6 +107,8 @@ class ReplanRequest(BaseModel):
     description: str
 
 class AIDecisionResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
     decision_id: str
     event_id: str
     route_id: str
@@ -127,9 +125,6 @@ class AIDecisionResponse(BaseModel):
     new_sequence: List[str]
     status: str
     created_at: datetime
-
-    class Config:
-        from_attributes = True
 
 class SupervisorApprovalRequest(BaseModel):
     decision_id: str
