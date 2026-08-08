@@ -124,6 +124,34 @@ class DynamicReplanner:
 
         return self._build_replan_result(route, new_route, f"Marked stop {failed_stop_id} as FAILED and skipped leg.", start_time)
 
+    def replan_order_cancelled(self, route: Dict[str, Any], stop_id: str) -> Dict[str, Any]:
+        """
+        Handles live customer order cancellation.
+        Removes stop from active route manifest and re-routes driver to next remaining stop.
+        """
+        start_time = time.time()
+        stops = [s for s in route.get("stops", []) if s["stop_id"] != stop_id]
+
+        new_route = dict(route)
+        new_route["stops"] = stops
+        self._recalculate_route_totals(new_route)
+
+        return self._build_replan_result(route, new_route, f"Order cancelled by customer for stop {stop_id}. Bypassed detour and re-routed directly to next destination.", start_time)
+
+    def replan_order_postponed(self, route: Dict[str, Any], stop_id: str, new_window: str = "16:00-18:00") -> Dict[str, Any]:
+        """
+        Handles customer order postponement / rescheduling.
+        Defers stop to later window/shift and re-sequences current active route.
+        """
+        start_time = time.time()
+        stops = [s for s in route.get("stops", []) if s["stop_id"] != stop_id]
+
+        new_route = dict(route)
+        new_route["stops"] = stops
+        self._recalculate_route_totals(new_route)
+
+        return self._build_replan_result(route, new_route, f"Order postponed to {new_window} by customer. Deferred stop from active shift manifest to prevent vehicle idling.", start_time)
+
     def _recalculate_route_totals(self, route: Dict[str, Any]):
         stops = route.get("stops", [])
         total_dist = 0.0

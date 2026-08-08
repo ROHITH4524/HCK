@@ -165,6 +165,10 @@ async def trigger_replan(req: ReplanRequest, db: Session = Depends(get_db)):
         replan_res = replanner.replan_instant_pickup(route_dict, new_st)
     elif req.event_type == "FAILED_DELIVERY":
         replan_res = replanner.replan_failed_delivery(route_dict, req.affected_stop_id or "STOP_003")
+    elif req.event_type == "ORDER_CANCELLED":
+        replan_res = replanner.replan_order_cancelled(route_dict, req.affected_stop_id or "STOP_004")
+    elif req.event_type == "ORDER_POSTPONED":
+        replan_res = replanner.replan_order_postponed(route_dict, req.affected_stop_id or "STOP_004")
     else:
         replan_res = replanner.replan_traffic_jam(route_dict, req.affected_stop_id or "STOP_002")
 

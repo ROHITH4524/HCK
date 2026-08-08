@@ -49,6 +49,27 @@ class ExplainabilityEngine:
             )
             affected_constraints.append("Delivery Window SLA Preserved")
 
+        elif event_type == "ORDER_CANCELLED":
+            headline = f"Order cancelled by customer. Active route re-sequenced for {vehicle_name}."
+            narrative = (
+                f"The customer requested a live order cancellation. "
+                f"The AI Replanning Engine instantly purged the stop from {vehicle_name}'s active manifest, "
+                f"bypassing the planned detour. The vehicle is re-routed directly to the next destination, "
+                f"saving approximately {abs(dist_saved)} km of deadhead mileage and {abs(time_saved)} minutes of driving time."
+            )
+            affected_constraints.append("Deadhead Detour Bypassed")
+            affected_constraints.append("Vehicle Payload Capacity Freed")
+
+        elif event_type == "ORDER_POSTPONED":
+            headline = f"Order postponed to later window/shift for {vehicle_name}."
+            narrative = (
+                f"The customer requested postponing delivery to a later time window / next shift. "
+                f"The AI Replanning Engine deferred the stop from the current shift manifest and re-optimized "
+                f"the remaining sequence to prevent vehicle idling. The order is placed into the deferred queue for evening/next day dispatch."
+            )
+            affected_constraints.append("VRPTW Time Window Deferred")
+            affected_constraints.append("Idle Waiting Time Prevented")
+
         else:
             headline = f"Route optimization updated for {vehicle_name}."
             narrative = f"{reason}. Total distance adjustment: {dist_saved:+.2f} km."
