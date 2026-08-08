@@ -108,7 +108,7 @@ const MainLayout = () => {
             <Route path="/route-planner" element={<RoutePlannerPage />} />
             <Route path="/live-tracking" element={<LiveTrackingPage onTriggerReplan={triggerReplanFlow} onTriggerPickup={() => setIsPickupModalOpen(true)} />} />
             <Route path="/supervisor" element={<SupervisorPage />} />
-            <Route path="/driver" element={<DriverView />} />
+            <Route path="/driver" element={<div className="flex justify-center py-4"><DriverView /></div>} />
             <Route path="/analytics" element={<AnalyticsPage />} />
             <Route path="/settings" element={<SettingsPage />} />
           </Routes>
