@@ -36,7 +36,7 @@ export const Navbar = ({ onTriggerReplan }) => {
         </button>
 
         {/* Role Switcher for Hackathon Demo */}
-        <div className="flex items-center bg-slate-900/90 p-1 rounded-xl border border-white/10 text-xs shadow-inner">
+        <div className="flex items-center gap-1.5 whitespace-nowrap bg-slate-900/90 p-1 rounded-xl border border-white/10 text-xs shadow-inner shrink-0">
           <button
             onClick={() => switchRole('SUPERVISOR')}
             className={`px-3 py-1.5 rounded-lg font-bold transition-all cursor-pointer ${
