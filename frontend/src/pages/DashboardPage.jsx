@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { KPICard } from '../components/KPICard';
 import { MapView } from '../components/MapView';
 import { analyticsAPI, routeAPI, vehicleAPI } from '../services/api';
-import { Route, Truck, Fuel, Clock, AlertTriangle, RefreshCw, IndianRupee, ShieldCheck, Cpu } from 'lucide-react';
+import { Route, Truck, Fuel, Clock, AlertTriangle, RefreshCw, IndianRupee, ShieldCheck, Cpu, Zap } from 'lucide-react';
 
 export const DashboardPage = ({ onTriggerReplan, onTriggerPickup }) => {
   const [kpis, setKpis] = useState({
@@ -11,31 +11,33 @@ export const DashboardPage = ({ onTriggerReplan, onTriggerPickup }) => {
     fuel_saved_inr: 1420.50,
     co2_reduced_kg: 18.5,
     avg_eta_accuracy_percent: 95.8,
-    delayed_deliveries: 1,
+    delayed_deliveries: 0,
     replanned_routes_today: 4,
     success_rate_percent: 98.2,
-    total_cod_collected_inr: 48500.0
+    total_cod_collected_inr: 25867.39
   });
 
   const [routes, setRoutes] = useState([]);
   const [vehicles, setVehicles] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
 
   const fetchData = async () => {
     try {
-      setLoading(true);
+      setRefreshing(true);
       const [kpiRes, routesRes, vRes] = await Promise.all([
         analyticsAPI.getDashboardKPIs(),
         routeAPI.getRoutes(),
         vehicleAPI.getVehicles()
       ]);
       setKpis(kpiRes.data);
-      setRoutes(routesRes.data);
-      setVehicles(vRes.data);
+      setRoutes(routesRes.data || []);
+      setVehicles(vRes.data || []);
     } catch (err) {
       console.error("Dashboard fetch error:", err);
     } finally {
       setLoading(false);
+      setRefreshing(false);
     }
   };
 
@@ -57,10 +59,18 @@ export const DashboardPage = ({ onTriggerReplan, onTriggerPickup }) => {
         </div>
 
         <div className="flex items-center gap-3">
-          <button onClick={fetchData} className="btn-secondary text-xs">
-            <RefreshCw className="w-4 h-4" /> Refresh Fleet
+          <button
+            onClick={fetchData}
+            disabled={refreshing}
+            className="btn-secondary text-xs py-2 px-3.5 cursor-pointer"
+          >
+            <RefreshCw className={`w-3.5 h-3.5 ${refreshing ? 'animate-spin' : ''}`} />
+            {refreshing ? 'Refreshing...' : 'Refresh Fleet'}
           </button>
-          <button onClick={() => onTriggerReplan && onTriggerReplan("TRAFFIC_JAM")} className="btn-orange text-xs">
+          <button
+            onClick={() => onTriggerReplan && onTriggerReplan("TRAFFIC_JAM")}
+            className="btn-orange text-xs py-2 px-4 shadow-orange-500/20 cursor-pointer hover:scale-[1.02] transition-transform"
+          >
             + Trigger Live Traffic Event
           </button>
         </div>
@@ -70,7 +80,7 @@ export const DashboardPage = ({ onTriggerReplan, onTriggerPickup }) => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <KPICard
           title="Routes Today"
-          value={kpis.total_routes_today}
+          value={kpis.total_routes_today || routes.length || 3}
           unit="Active Fleet"
           icon={Route}
           color="cyan"
@@ -78,7 +88,7 @@ export const DashboardPage = ({ onTriggerReplan, onTriggerPickup }) => {
         />
         <KPICard
           title="Fuel & Cost Saved"
-          value={`₹${kpis.fuel_saved_inr.toLocaleString()}`}
+          value={`₹${(kpis.fuel_saved_inr || 1420.50).toLocaleString('en-IN')}`}
           unit="Saved"
           icon={Fuel}
           color="amber"
@@ -86,7 +96,7 @@ export const DashboardPage = ({ onTriggerReplan, onTriggerPickup }) => {
         />
         <KPICard
           title="Average ETA Accuracy"
-          value={`${kpis.avg_eta_accuracy_percent}%`}
+          value={`${kpis.avg_eta_accuracy_percent || 95.8}%`}
           unit="On-Time"
           icon={Clock}
           color="green"
@@ -94,7 +104,7 @@ export const DashboardPage = ({ onTriggerReplan, onTriggerPickup }) => {
         />
         <KPICard
           title="Total COD Collected"
-          value={`₹${kpis.total_cod_collected_inr.toLocaleString()}`}
+          value={`₹${(kpis.total_cod_collected_inr || 25867.39).toLocaleString('en-IN')}`}
           unit="INR Cash"
           icon={IndianRupee}
           color="purple"
@@ -113,7 +123,7 @@ export const DashboardPage = ({ onTriggerReplan, onTriggerPickup }) => {
             <span className="badge badge-cyan">40 Indian Delivery Stops</span>
           </div>
 
-          <div className="h-[460px]">
+          <div className="h-[480px]">
             <MapView
               routes={routes}
               vehicles={vehicles}
@@ -125,43 +135,69 @@ export const DashboardPage = ({ onTriggerReplan, onTriggerPickup }) => {
         {/* Fleet Vehicles Status Panel (1 col) */}
         <div className="glass-panel p-5 space-y-4">
           <h3 className="text-sm font-bold text-white flex items-center justify-between border-b border-white/10 pb-3">
-            <span>Active Fleet Status</span>
-            <span className="badge badge-green">3 En-Route</span>
+            <span>Active Fleet Telematics</span>
+            <span className="badge badge-green">3 EN-ROUTE</span>
           </h3>
 
           <div className="space-y-3">
-            {vehicles.map((v) => (
-              <div key={v.vehicle_id} className="p-3.5 rounded-xl bg-slate-900/80 border border-white/5 space-y-2">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <Truck className="w-4 h-4 text-cyan-400" />
-                    <span className="text-xs font-bold text-white">{v.name}</span>
-                  </div>
-                  <span className={`badge ${v.is_eco_friendly ? 'badge-green' : 'badge-orange'}`}>
-                    {v.type}
-                  </span>
-                </div>
+            {vehicles.map((v) => {
+              const assignedRoute = routes.find(r => r.vehicle_id === v.vehicle_id);
+              const stops = assignedRoute?.stops || [];
+              const totalWeight = stops.reduce((acc, s) => acc + (s.package_weight_kg || 1.0), 0);
+              const totalCod = stops.reduce((acc, s) => acc + (s.is_cod ? (s.cod_amount_inr || 0) : 0), 0);
 
-                {/* Meter Bars */}
-                <div className="space-y-1.5 text-[11px]">
-                  <div className="flex justify-between text-slate-400">
-                    <span>Weight Capacity</span>
-                    <span className="text-slate-200 font-semibold">185kg / {v.max_capacity_kg}kg</span>
-                  </div>
-                  <div className="w-full h-1.5 rounded-full bg-slate-800 overflow-hidden">
-                    <div className="h-full bg-cyan-500 rounded-full" style={{ width: '74%' }} />
+              const maxCap = v.max_capacity_kg || 250.0;
+              const maxCod = v.max_cod_limit_inr || 50000.0;
+
+              const weightPct = Math.min(Math.round((totalWeight / maxCap) * 100), 100);
+              const codPct = Math.min(Math.round((totalCod / maxCod) * 100), 100);
+
+              return (
+                <div key={v.vehicle_id} className="p-4 rounded-xl bg-slate-900/80 border border-white/5 space-y-2.5 shadow-sm">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <Truck className="w-4 h-4 text-cyan-400" />
+                      <div>
+                        <span className="text-xs font-bold text-white block">{v.name}</span>
+                        <span className="text-[10px] text-slate-400">{stops.length} Stops Assigned</span>
+                      </div>
+                    </div>
+                    <span className={`badge ${v.is_eco_friendly ? 'badge-green' : 'badge-orange'} text-[9px]`}>
+                      {v.type}
+                    </span>
                   </div>
 
-                  <div className="flex justify-between text-slate-400 pt-1">
-                    <span>COD Safety Cash Limit</span>
-                    <span className="text-amber-400 font-semibold">₹18,500 / ₹{v.max_cod_limit_inr.toLocaleString()}</span>
-                  </div>
-                  <div className="w-full h-1.5 rounded-full bg-slate-800 overflow-hidden">
-                    <div className="h-full bg-amber-500 rounded-full" style={{ width: '37%' }} />
+                  {/* Dynamic Capacity & COD Meters */}
+                  <div className="space-y-2 text-[11px] pt-1">
+                    <div>
+                      <div className="flex justify-between text-slate-400 mb-1">
+                        <span>Weight Capacity</span>
+                        <span className="text-slate-200 font-bold">{totalWeight.toFixed(1)}kg / {maxCap}kg</span>
+                      </div>
+                      <div className="w-full h-1.5 rounded-full bg-slate-800 overflow-hidden">
+                        <div
+                          className="h-full bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full transition-all duration-500"
+                          style={{ width: `${weightPct > 0 ? weightPct : 15}%` }}
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <div className="flex justify-between text-slate-400 mb-1">
+                        <span>COD Safety Cash Limit</span>
+                        <span className="text-amber-400 font-bold">₹{totalCod.toLocaleString('en-IN')} / ₹{maxCod.toLocaleString('en-IN')}</span>
+                      </div>
+                      <div className="w-full h-1.5 rounded-full bg-slate-800 overflow-hidden">
+                        <div
+                          className="h-full bg-gradient-to-r from-amber-500 to-orange-500 rounded-full transition-all duration-500"
+                          style={{ width: `${codPct > 0 ? codPct : 10}%` }}
+                        />
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>

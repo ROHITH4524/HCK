@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, Polyline, useMap } from 'react-leaflet';
 import L from 'leaflet';
-import { Truck, MapPin, AlertTriangle, ShieldCheck } from 'lucide-react';
+import { Truck, MapPin, AlertTriangle, ShieldCheck, Zap } from 'lucide-react';
 
 // Custom Leaflet Icons
 const hubIcon = new L.Icon({
@@ -39,7 +39,7 @@ const AutoFitBounds = ({ routes, hub }) => {
     if (routes && routes.length > 0) {
       const points = [
         [hub.lat, hub.lng],
-        ...routes.flatMap(r => r.stops.map(s => [s.lat, s.lng]))
+        ...routes.flatMap(r => (r.stops || []).map(s => [s.lat, s.lng]))
       ];
       if (points.length > 1) {
         map.fitBounds(points, { padding: [40, 40] });
@@ -71,19 +71,20 @@ export const MapView = ({ routes = [], vehicles = [], onStopClick, onTriggerPick
         {/* Hub Depot Marker */}
         <Marker position={[hub.lat, hub.lng]} icon={hubIcon}>
           <Popup>
-            <div className="p-1">
+            <div className="p-1 space-y-1">
               <h4 className="font-bold text-cyan-400 text-sm">{hub.name}</h4>
               <p className="text-xs text-slate-300">Central Amazon Fulfillment Hub</p>
-              <span className="badge badge-cyan mt-2">Depot Origin</span>
+              <span className="badge badge-cyan mt-1">Depot Origin</span>
             </div>
           </Popup>
         </Marker>
 
         {/* Render Routes & Stops */}
         {routes.map((route, rIdx) => {
+          const stops = route.stops || [];
           const polylineCoords = [
             [hub.lat, hub.lng],
-            ...route.stops.map(s => [s.lat, s.lng]),
+            ...stops.map(s => [s.lat, s.lng]),
             [hub.lat, hub.lng]
           ];
 
@@ -103,7 +104,7 @@ export const MapView = ({ routes = [], vehicles = [], onStopClick, onTriggerPick
               />
 
               {/* Stop Markers */}
-              {route.stops.map((stop) => (
+              {stops.map((stop) => (
                 <Marker
                   key={stop.stop_id}
                   position={[stop.lat, stop.lng]}
@@ -117,12 +118,12 @@ export const MapView = ({ routes = [], vehicles = [], onStopClick, onTriggerPick
                           {stop.is_cod ? `COD ₹${stop.cod_amount_inr}` : 'PREPAID'}
                         </span>
                       </div>
-                      <p className="text-xs font-semibold text-white">{stop.address}</p>
-                      <p className="text-[11px] text-slate-400">Zone: {stop.zone_name}</p>
+                      <p className="text-xs font-semibold text-white">{stop.customer_name || stop.address}</p>
+                      <p className="text-[11px] text-slate-300">{stop.address}</p>
                       <p className="text-[11px] text-slate-400">ETA: <strong className="text-amber-400">{stop.eta || '10:30'}</strong> ({stop.service_time_minutes} min service)</p>
                       {stop.no_truck_zone && (
-                        <div className="flex items-center gap-1 text-[10px] text-rose-400">
-                          <AlertTriangle className="w-3 h-3" /> No-Truck Restriction Zone
+                        <div className="flex items-center gap-1 text-[10px] text-rose-400 font-semibold pt-1">
+                          <AlertTriangle className="w-3 h-3" /> No-Truck Prohibition Zone
                         </div>
                       )}
                     </div>
@@ -141,13 +142,13 @@ export const MapView = ({ routes = [], vehicles = [], onStopClick, onTriggerPick
             icon={vehicleIcon}
           >
             <Popup>
-              <div className="p-2">
+              <div className="p-2 space-y-1">
                 <h4 className="font-bold text-sm text-cyan-400">{v.name}</h4>
                 <p className="text-xs text-slate-300">Type: {v.type}</p>
-                <p className="text-xs text-slate-300">Driver: {v.driver_id || 'Ramesh'}</p>
+                <p className="text-xs text-slate-300">Driver: {v.driver_id || 'Ramesh Kumar'}</p>
                 <div className="mt-2 flex items-center justify-between text-xs">
                   <span className="badge badge-green">{v.status}</span>
-                  <span className="text-slate-400">Max COD: ₹{v.max_cod_limit_inr}</span>
+                  <span className="text-slate-400 font-semibold">Max COD: ₹{v.max_cod_limit_inr?.toLocaleString()}</span>
                 </div>
               </div>
             </Popup>
@@ -156,11 +157,12 @@ export const MapView = ({ routes = [], vehicles = [], onStopClick, onTriggerPick
       </MapContainer>
 
       {/* Floating Map Controls Overlay */}
-      <div className="absolute top-4 right-4 z-[1000] flex flex-col gap-2">
+      <div className="absolute top-4 right-4 z-[1000] bg-slate-900/90 border border-white/10 backdrop-blur-md p-1.5 rounded-xl shadow-xl">
         <button
           onClick={() => onTriggerPickup && onTriggerPickup()}
-          className="btn-orange text-xs py-2 px-3 shadow-lg"
+          className="btn-orange text-xs py-2 px-3.5 shadow-md flex items-center gap-1.5 cursor-pointer hover:scale-[1.02] transition-transform"
         >
+          <Zap className="w-3.5 h-3.5 text-white" />
           + Add Instant Pickup Request
         </button>
       </div>
