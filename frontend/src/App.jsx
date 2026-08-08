@@ -5,6 +5,7 @@ import { Navbar } from './components/Navbar';
 import { Sidebar } from './components/Sidebar';
 import { DriverView } from './components/DriverView';
 import { SupervisorModal } from './components/SupervisorModal';
+import { DynamicPickupModal } from './components/DynamicPickupModal';
 
 import { DashboardPage } from './pages/DashboardPage';
 import { RoutePlannerPage } from './pages/RoutePlannerPage';
@@ -19,6 +20,7 @@ import { routeAPI } from './services/api';
 const MainLayout = () => {
   const { user, switchRole } = useAuth();
   const [activeReplanDecision, setActiveReplanDecision] = useState(null);
+  const [isPickupModalOpen, setIsPickupModalOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState(null);
 
   const triggerReplanFlow = async (eventType = 'TRAFFIC_JAM') => {
@@ -37,8 +39,30 @@ const MainLayout = () => {
     }
   };
 
-  const triggerInstantPickupModal = () => {
-    triggerReplanFlow('INSTANT_PICKUP');
+  const handleCustomPickupSubmit = async (formData) => {
+    try {
+      const res = await routeAPI.replan({
+        event_type: 'INSTANT_PICKUP',
+        route_id: 'RT_VEH_BLR_01',
+        new_pickup: {
+          stop_id: `STOP_DYN_${Date.now().toString().slice(-4)}`,
+          customer_name: formData.customer_name,
+          address: formData.address,
+          lat: formData.lat,
+          lng: formData.lng,
+          package_weight_kg: formData.package_weight_kg,
+          is_cod: formData.is_cod,
+          cod_amount_inr: formData.cod_amount_inr,
+          zone_name: 'Dynamic Pickup'
+        },
+        description: `Priority dynamic pickup for ${formData.customer_name} at ${formData.address}`
+      });
+      setActiveReplanDecision(res.data);
+      setToastMessage(`Dynamic Pickup injected: ${formData.customer_name}`);
+      setTimeout(() => setToastMessage(null), 4000);
+    } catch (err) {
+      console.error('Dynamic pickup submit error:', err);
+    }
   };
 
   if (!user) {
@@ -80,9 +104,9 @@ const MainLayout = () => {
         <Sidebar />
         <main className="flex-1 p-6 overflow-y-auto max-w-7xl">
           <Routes>
-            <Route path="/" element={<DashboardPage onTriggerReplan={triggerReplanFlow} onTriggerPickup={triggerInstantPickupModal} />} />
+            <Route path="/" element={<DashboardPage onTriggerReplan={triggerReplanFlow} onTriggerPickup={() => setIsPickupModalOpen(true)} />} />
             <Route path="/route-planner" element={<RoutePlannerPage />} />
-            <Route path="/live-tracking" element={<LiveTrackingPage onTriggerReplan={triggerReplanFlow} onTriggerPickup={triggerInstantPickupModal} />} />
+            <Route path="/live-tracking" element={<LiveTrackingPage onTriggerReplan={triggerReplanFlow} onTriggerPickup={() => setIsPickupModalOpen(true)} />} />
             <Route path="/supervisor" element={<SupervisorPage />} />
             <Route path="/driver" element={<DriverView />} />
             <Route path="/analytics" element={<AnalyticsPage />} />
@@ -91,6 +115,14 @@ const MainLayout = () => {
         </main>
       </div>
 
+      {/* Dynamic Interactive Pickup Input Modal */}
+      <DynamicPickupModal
+        isOpen={isPickupModalOpen}
+        onClose={() => setIsPickupModalOpen(false)}
+        onSubmit={handleCustomPickupSubmit}
+      />
+
+      {/* AI Decision Supervisor Modal */}
       {activeReplanDecision && (
         <SupervisorModal
           decision={activeReplanDecision}

@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, Polyline, useMap } from 'react-leaflet';
 import L from 'leaflet';
-import { Truck, MapPin, AlertTriangle, ShieldCheck, Zap } from 'lucide-react';
+import { Truck, MapPin, AlertTriangle, ShieldCheck, Zap, Navigation } from 'lucide-react';
 
 // Custom Leaflet Icons
 const hubIcon = new L.Icon({
@@ -52,6 +52,39 @@ const AutoFitBounds = ({ routes, hub }) => {
 export const MapView = ({ routes = [], vehicles = [], onStopClick, onTriggerPickup }) => {
   const hub = { lat: 13.0285, lng: 77.5197, name: 'Peenya Hub (Bengaluru Depot)' };
   const routeColors = ['#06b6d4', '#f97316', '#10b981', '#a855f7', '#ec4899'];
+  const [animatedPositions, setAnimatedPositions] = useState({});
+
+  // Live Vehicle Telematics Movement Simulation along Route Polylines
+  useEffect(() => {
+    if (!routes || routes.length === 0) return;
+
+    let stepIndex = 0;
+    const interval = setInterval(() => {
+      stepIndex++;
+      const newPos = {};
+
+      routes.forEach((route) => {
+        const stops = route.stops || [];
+        if (stops.length > 0) {
+          const pathPoints = [
+            [hub.lat, hub.lng],
+            ...stops.map(s => [s.lat, s.lng]),
+            [hub.lat, hub.lng]
+          ];
+          const currIdx = stepIndex % pathPoints.length;
+          newPos[route.vehicle_id] = {
+            lat: pathPoints[currIdx][0],
+            lng: pathPoints[currIdx][1],
+            nextStop: stops[currIdx]?.customer_name || 'En-Route'
+          };
+        }
+      });
+
+      setAnimatedPositions(newPos);
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, [routes]);
 
   return (
     <div className="w-full h-full min-h-[500px] rounded-2xl overflow-hidden border border-white/10 relative shadow-2xl">
@@ -134,30 +167,43 @@ export const MapView = ({ routes = [], vehicles = [], onStopClick, onTriggerPick
           );
         })}
 
-        {/* Live Vehicles */}
-        {vehicles.map((v) => (
-          <Marker
-            key={v.vehicle_id}
-            position={[v.current_lat || hub.lat, v.current_lng || hub.lng]}
-            icon={vehicleIcon}
-          >
-            <Popup>
-              <div className="p-2 space-y-1">
-                <h4 className="font-bold text-sm text-cyan-400">{v.name}</h4>
-                <p className="text-xs text-slate-300">Type: {v.type}</p>
-                <p className="text-xs text-slate-300">Driver: {v.driver_id || 'Ramesh Kumar'}</p>
-                <div className="mt-2 flex items-center justify-between text-xs">
-                  <span className="badge badge-green">{v.status}</span>
-                  <span className="text-slate-400 font-semibold">Max COD: ₹{v.max_cod_limit_inr?.toLocaleString()}</span>
+        {/* Live Moving Vehicles */}
+        {vehicles.map((v) => {
+          const livePos = animatedPositions[v.vehicle_id];
+          const lat = livePos?.lat || v.current_lat || hub.lat;
+          const lng = livePos?.lng || v.current_lng || hub.lng;
+
+          return (
+            <Marker
+              key={v.vehicle_id}
+              position={[lat, lng]}
+              icon={vehicleIcon}
+            >
+              <Popup>
+                <div className="p-2 space-y-1">
+                  <h4 className="font-bold text-sm text-cyan-400 flex items-center gap-1.5">
+                    <Navigation className="w-3.5 h-3.5 text-emerald-400 animate-spin-slow" />
+                    {v.name}
+                  </h4>
+                  <p className="text-xs text-slate-300">Type: {v.type}</p>
+                  <p className="text-xs text-slate-300">Target: <strong className="text-amber-400">{livePos?.nextStop || 'En-Route'}</strong></p>
+                  <div className="mt-2 flex items-center justify-between text-xs">
+                    <span className="badge badge-green">LIVE TRACKING</span>
+                    <span className="text-slate-400 font-semibold">Max COD: ₹{v.max_cod_limit_inr?.toLocaleString()}</span>
+                  </div>
                 </div>
-              </div>
-            </Popup>
-          </Marker>
-        ))}
+              </Popup>
+            </Marker>
+          );
+        })}
       </MapContainer>
 
       {/* Floating Map Controls Overlay */}
-      <div className="absolute top-4 right-4 z-[1000] bg-slate-900/90 border border-white/10 backdrop-blur-md p-1.5 rounded-xl shadow-xl">
+      <div className="absolute top-4 right-4 z-[1000] bg-slate-900/90 border border-white/10 backdrop-blur-md p-1.5 rounded-xl shadow-xl flex items-center gap-2">
+        <span className="flex items-center gap-1.5 text-[11px] font-bold text-emerald-400 px-2">
+          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+          Live Telematics Moving
+        </span>
         <button
           onClick={() => onTriggerPickup && onTriggerPickup()}
           className="btn-orange text-xs py-2 px-3.5 shadow-md flex items-center gap-1.5 cursor-pointer hover:scale-[1.02] transition-transform"
